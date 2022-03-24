@@ -93,6 +93,30 @@ class volume():
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         volume.SetMasterVolumeLevel(-19, None)
 
+    def alza(self):
+        devices = AudioUtilities.GetSpeakers()
+        interface = devices.Activate(
+            IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        volume = cast(interface, POINTER(IAudioEndpointVolume))
+        quanto = volume.GetMasterVolumeLevel()
+        if quanto == 0:
+            pass
+        else:
+            quanto = quanto + 1
+            volume.SetMasterVolumeLevel(quanto, None)
+
+    def abbassa(self):
+        devices = AudioUtilities.GetSpeakers()
+        interface = devices.Activate(
+            IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+        volume = cast(interface, POINTER(IAudioEndpointVolume))
+        quanto = volume.GetMasterVolumeLevel()
+        if quanto == -37:
+            pass
+        else:
+            quanto = quanto - 1
+            volume.SetMasterVolumeLevel(quanto, None)
+
 
 
 class messaggio_whatsapp():

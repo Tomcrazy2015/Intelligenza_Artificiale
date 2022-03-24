@@ -93,25 +93,25 @@ class volume():
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         volume.SetMasterVolumeLevel(-19, None)
 
-    def alza(self):
+    def alza_20(self):
         devices = AudioUtilities.GetSpeakers()
         interface = devices.Activate(
             IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         quanto = volume.GetMasterVolumeLevel()
-        if quanto == 0:
+        if quanto > -8:
             pass
         else:
             quanto = quanto + 1
             volume.SetMasterVolumeLevel(quanto, None)
 
-    def abbassa(self):
+    def abbassa_20(self):
         devices = AudioUtilities.GetSpeakers()
         interface = devices.Activate(
             IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
         volume = cast(interface, POINTER(IAudioEndpointVolume))
         quanto = volume.GetMasterVolumeLevel()
-        if quanto == -37:
+        if quanto < -29:
             pass
         else:
             quanto = quanto - 1
